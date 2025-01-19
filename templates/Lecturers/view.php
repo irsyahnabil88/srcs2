@@ -36,12 +36,12 @@
     <div class="table-responsive">
         <table class="table">
                 <tr>
-                    <th><?= __('Lecturer Email') ?></th>
-                    <td><?= h($lecturer->lecturer_email) ?></td>
-                </tr>
-                <tr>
                     <th><?= __('Lecturer Name') ?></th>
                     <td><?= h($lecturer->lecturer_name) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Lecturer Email') ?></th>
+                    <td><?= h($lecturer->lecturer_email) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Lecturer Department') ?></th>
@@ -49,7 +49,7 @@
                 </tr>
                 <tr>
                     <th><?= __('Faculty') ?></th>
-                    <td><?= $lecturer->hasValue('faculty') ? $this->Html->link($lecturer->faculty->faculty_department, ['controller' => 'Faculties', 'action' => 'view', $lecturer->faculty->faculty_name]) : '' ?></td>
+                    <td><?= $lecturer->hasValue('faculty') ? $this->Html->link($lecturer->faculty->faculty_department, ['controller' => 'Faculties', 'action' => 'view', $lecturer->faculty->faculty_id]) : '' ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Lecturer Id') ?></th>

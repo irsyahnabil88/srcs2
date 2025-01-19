@@ -77,16 +77,16 @@ class LecturersTable extends Table
     public function validationDefault(Validator $validator): Validator
     {
         $validator
-            ->scalar('lecturer_email')
-            ->maxLength('lecturer_email', 50)
-            ->requirePresence('lecturer_email', 'create')
-            ->notEmptyString('lecturer_email');
-
-        $validator
             ->scalar('lecturer_name')
             ->maxLength('lecturer_name', 50)
             ->requirePresence('lecturer_name', 'create')
             ->notEmptyString('lecturer_name');
+
+        $validator
+            ->scalar('lecturer_email')
+            ->maxLength('lecturer_email', 50)
+            ->requirePresence('lecturer_email', 'create')
+            ->notEmptyString('lecturer_email');
 
         $validator
             ->scalar('lecturer_department')

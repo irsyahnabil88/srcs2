@@ -66,8 +66,8 @@
                 <tr>
 					<th>#</th>
                     <th><?= $this->Paginator->sort('lecturer_id') ?></th>
+                    <th><?= $this->Paginator->sort('lecturer_name') ?></th>
                     <th><?= $this->Paginator->sort('lecturer_email') ?></th>
-                    <th><?= $this->Paginator->sort('lecturer_name') ?></th> <!--test-->
                     <th><?= $this->Paginator->sort('lecturer_department') ?></th>
                     <th><?= $this->Paginator->sort('faculty_id') ?></th>
                     <th><?= $this->Paginator->sort('status') ?></th>
@@ -81,10 +81,10 @@
                 <tr>
 				<td><?php echo $counter++ ?></td>
                     <td><?= $this->Number->format($lecturer->lecturer_id) ?></td>
-                    <td><?= h($lecturer->lecturer_email) ?></td>
                     <td><?= h($lecturer->lecturer_name) ?></td>
+                    <td><?= h($lecturer->lecturer_email) ?></td>
                     <td><?= h($lecturer->lecturer_department) ?></td>
-                    <td><?= $lecturer->hasValue('faculty') ? $this->Html->link($lecturer->faculty->faculty_department, ['controller' => 'Faculties', 'action' => 'view', $lecturer->faculty->faculty_name]) : '' ?></td>
+                    <td><?= $lecturer->hasValue('faculty') ? $this->Html->link($lecturer->faculty->faculty_department, ['controller' => 'Faculties', 'action' => 'view', $lecturer->faculty->faculty_id]) : '' ?></td>
                     <td><?= $this->Number->format($lecturer->status) ?></td>
                     <td><?= h($lecturer->created) ?></td>
                     <td><?= h($lecturer->modified) ?></td>

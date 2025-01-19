@@ -188,16 +188,16 @@ class LecturersController extends AppController
      */
     public function add()
     {
-        $this->set('title', 'New Lecturers');
-        EventManager::instance()->on('AuditStash.beforeLog', function ($event, array $logs) {
-            foreach ($logs as $log) {
-                $log->setMetaInfo($log->getMetaInfo() + ['a_name' => 'Add']);
-                $log->setMetaInfo($log->getMetaInfo() + ['c_name' => 'Lecturers']);
-                $log->setMetaInfo($log->getMetaInfo() + ['ip' => $this->request->clientIp()]);
-                $log->setMetaInfo($log->getMetaInfo() + ['url' => Router::url(null, true)]);
-                $log->setMetaInfo($log->getMetaInfo() + ['slug' => $this->Authentication->getIdentity('slug')->getIdentifier('slug')]);
-            }
-        });
+		$this->set('title', 'New Lecturers');
+		EventManager::instance()->on('AuditStash.beforeLog', function ($event, array $logs) {
+			foreach ($logs as $log) {
+				$log->setMetaInfo($log->getMetaInfo() + ['a_name' => 'Add']);
+				$log->setMetaInfo($log->getMetaInfo() + ['c_name' => 'Lecturers']);
+				$log->setMetaInfo($log->getMetaInfo() + ['ip' => $this->request->clientIp()]);
+				$log->setMetaInfo($log->getMetaInfo() + ['url' => Router::url(null, true)]);
+				$log->setMetaInfo($log->getMetaInfo() + ['slug' => $this->Authentication->getIdentity('slug')->getIdentifier('slug')]);
+			}
+		});
         $lecturer = $this->Lecturers->newEmptyEntity();
         if ($this->request->is('post')) {
             $lecturer = $this->Lecturers->patchEntity($lecturer, $this->request->getData());
@@ -208,11 +208,7 @@ class LecturersController extends AppController
             }
             $this->Flash->error(__('The lecturer could not be saved. Please, try again.'));
         }
-        $faculties = $this->Lecturers->Faculties->find('list', [
-            'keyField' => 'faculty_id',
-            'valueField' => 'faculty_name',
-            'limit' => 200
-        ])->all();
+        $faculties = $this->Lecturers->Faculties->find('list', ['limit' => 200])->all();
         $this->set(compact('lecturer', 'faculties'));
     }
 
