@@ -28,22 +28,38 @@
 </div>
 <div class="line mb-4"></div>
 <!--/Header-->
-
 <div class="card rounded-0 mb-3 bg-body-tertiary border-0 shadow">
     <div class="card-body text-body-secondary">
-            <?= $this->Form->create($faculty) ?>
-            <fieldset>
-                <legend><?= __('Edit Faculty') ?></legend>
-                
-                    <?php echo $this->Form->control('faculty_department'); ?>
-                    <?php echo $this->Form->control('faculty_name'); ?>
-                    <?php echo $this->Form->control('status'); ?>
-               
-            </fieldset>
-				<div class="text-end">
-				  <?= $this->Form->button('Reset', ['type' => 'reset', 'class' => 'btn btn-outline-warning']); ?>
-				  <?= $this->Form->button(__('Submit'),['type' => 'submit', 'class' => 'btn btn-outline-primary']) ?>
-                </div>
+        <?= $this->Form->create($faculty) ?>
+        <fieldset>
+            <legend><?= __('Edit Faculty') ?></legend>
+
+            <?php echo $this->Form->control('faculty_department'); ?>
+            <?php echo $this->Form->control('faculty_name'); ?>
+
+            <!-- Status Field with Label and Correct Class for Small Size -->
+            <div class="form-group">
+                <div class="col-md-1">
+                <label for="status" class="form-label"><?= __('Status') ?></label>
+                <?= $this->Form->control('status', [
+                    'type' => 'select',
+                    'options' => [
+                        '1' => 'Active',
+                        '0' => 'Inactive',
+                    ],
+                    'empty' => false,
+                    'class' => 'form-select form-select-sm', // Correct class for smaller size
+                    'label' => false, // Hide the default label from FormHelper
+                    'id' => 'status' // Explicit ID if needed
+                ]); ?>
+            </div>
+        </div>
+
+        </fieldset>
+        <div class="text-end">
+            <?= $this->Form->button('Reset', ['type' => 'reset', 'class' => 'btn btn-outline-warning']); ?>
+            <?= $this->Form->button(__('Submit'),['type' => 'submit', 'class' => 'btn btn-outline-primary']) ?>
+        </div>
         <?= $this->Form->end() ?>
     </div>
 </div>

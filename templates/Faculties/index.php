@@ -13,6 +13,27 @@
 	$c_name = $this->request->getParam('controller');
 	echo $this->Html->script('bootstrapModal', ['block' => 'scriptBottom']);
 ?>
+
+<style>
+    /* Center the text "Actions" in the header */
+    table th.actions {
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    /* Center the content in the Actions column */
+    table td.actions {
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    /* Ensure buttons are centered below the Actions header */
+    table td.actions .btn-group {
+        display: inline-flex;
+        justify-content: center;
+    }
+</style>
+
 <!--Header-->
 <div class="row text-body-secondary">
 	<div class="col-10">
@@ -80,8 +101,17 @@
                     <td><?= $this->Number->format($faculty->faculty_id) ?></td>
                     <td><?= h($faculty->faculty_department) ?></td>
                     <td><?= h($faculty->faculty_name) ?></td>
-                    <td><?= $this->Number->format($faculty->status) ?></td>
-                    
+					<td>
+    <?php 
+        if ($faculty->status == 1) {
+            echo '<span class="badge bg-success">Active</span>';
+        } elseif ($faculty->status == 0) {
+            echo '<span class="badge bg-danger">Not Active</span>';
+        } else {
+            echo '<span class="badge bg-warning">Error</span>';
+        }
+    ?>
+</td>
 					<td class="actions text-center">
 						<div class="btn-group shadow" role="group" aria-label="Basic example">
 							<?= $this->Html->link(__('<i class="far fa-folder-open"></i>'), ['action' => 'view', $faculty->faculty_id], ['class' => 'btn btn-outline-primary btn-xs', 'escapeTitle' => false]) ?>

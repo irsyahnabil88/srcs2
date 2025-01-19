@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 18, 2025 at 02:00 PM
+-- Generation Time: Jan 19, 2025 at 02:23 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -62,7 +62,19 @@ INSERT INTO `audit_logs` (`id`, `transaction`, `type`, `primary_key`, `source`, 
 (13, '6bc5017e-18cf-4196-998a-c8a86451875e', 'update', 7, 'lecturers', NULL, '{\"lecturer_email\":\"asyraf@123.gmail.com\"}', '{\"lecturer_email\":\"asyraf@124.gmail.com\"}', '{\"a_name\":\"Edit\",\"c_name\":\"Lecturers\",\"ip\":\"127.0.0.1\",\"url\":\"http:\\/\\/localhost\\/srcs\\/lecturers\\/edit\\/7\",\"slug\":1}', 1, NULL, '2025-01-18 21:47:23'),
 (14, 'ca4c2c38-e586-4038-a126-8bf4366bf3da', 'update', 1, 'students', NULL, '{\"student_name\":\"razman\"}', '{\"student_name\":\"razma\"}', '{\"a_name\":\"Edit\",\"c_name\":\"Students\",\"ip\":\"127.0.0.1\",\"url\":\"http:\\/\\/localhost\\/srcs\\/students\\/edit\\/1\",\"slug\":1}', 1, NULL, '2025-01-18 21:51:25'),
 (15, 'dbc6e2cb-de2e-40ac-814f-595b5d4e4196', 'update', 2, 'subjects', NULL, '{\"subject_name\":\"Database\"}', '{\"subject_name\":\" Advance Database\"}', '{\"a_name\":\"Edit\",\"c_name\":\"Subjects\",\"ip\":\"127.0.0.1\",\"url\":\"http:\\/\\/localhost\\/srcs\\/subjects\\/edit\\/2\",\"slug\":1}', 1, NULL, '2025-01-18 21:51:39'),
-(16, '2be88f6e-ed33-4b23-9893-450985d60fb2', 'update', 1, 'semesters', NULL, '{\"semester_name\":\"March-April\",\"semester_enddate\":\"2025-01-30\"}', '{\"semester_name\":\"March-June\",\"semester_enddate\":\"2025-01-31\"}', '{\"a_name\":\"Edit\",\"c_name\":\"Semesters\",\"ip\":\"127.0.0.1\",\"url\":\"http:\\/\\/localhost\\/srcs\\/semesters\\/edit\\/1\",\"slug\":1}', 1, NULL, '2025-01-18 21:51:54');
+(16, '2be88f6e-ed33-4b23-9893-450985d60fb2', 'update', 1, 'semesters', NULL, '{\"semester_name\":\"March-April\",\"semester_enddate\":\"2025-01-30\"}', '{\"semester_name\":\"March-June\",\"semester_enddate\":\"2025-01-31\"}', '{\"a_name\":\"Edit\",\"c_name\":\"Semesters\",\"ip\":\"127.0.0.1\",\"url\":\"http:\\/\\/localhost\\/srcs\\/semesters\\/edit\\/1\",\"slug\":1}', 1, NULL, '2025-01-18 21:51:54'),
+(17, 'cdf6fa4d-8a6c-4f13-b620-bca7e1aeb5e5', 'update', 1, 'students', NULL, '{\"student_address2\":\"\",\"student_postcode\":\"\",\"student_city\":\"\",\"student_state\":\"\",\"faculty_departmentid\":0}', '{\"student_address2\":\"putih 1b\\/ku10\",\"student_postcode\":\"41050\",\"student_city\":\"Klang\",\"student_state\":\"Selangor Darul Ehsan\",\"faculty_departmentid\":5}', '{\"a_name\":\"Edit\",\"c_name\":\"Students\",\"ip\":\"::1\",\"url\":\"http:\\/\\/localhost\\/srcs\\/students\\/edit\\/1\",\"slug\":1}', 1, NULL, '2025-01-19 15:39:22'),
+(18, 'f20a7ef1-cc41-4272-ba3c-35902d753126', 'create', 2, 'students', NULL, '[]', '{\"student_id\":2,\"student_name\":\"Muhamad Farhat bin Muhamad Akhdzar\",\"student_email\":\"farhatakhdzar2002@gmail.com\",\"student_phone\":126687616,\"student_address1\":\"No 28 jalan meranti\",\"status\":1,\"student_address2\":\"putih 1b\\/ku10\",\"student_postcode\":\"41050\",\"student_city\":\"Klang\",\"student_state\":\"Selangor\",\"faculty_id\":5,\"semester_id\":1}', '{\"a_name\":\"Add\",\"c_name\":\"Students\",\"ip\":\"::1\",\"url\":\"http:\\/\\/localhost\\/srcs\\/students\\/add\",\"slug\":1}', 1, NULL, '2025-01-19 17:18:44'),
+(19, 'db1b8944-d5ab-4b65-944e-4eb3a9b8ae08', 'update', 1, 'students', NULL, '{\"status\":1,\"student_state\":\"Selangor Darul Ehsan\"}', '{\"status\":0,\"student_state\":\"Selangor\"}', '{\"a_name\":\"Edit\",\"c_name\":\"Students\",\"ip\":\"::1\",\"url\":\"http:\\/\\/localhost\\/srcs\\/students\\/edit\\/1\",\"slug\":1}', 1, NULL, '2025-01-19 17:20:26'),
+(20, '5689ceee-6b2a-43fa-8768-eaedcd84dfe6', 'update', 2, 'subjects', NULL, '{\"subject_code\":\"\"}', '{\"subject_code\":\"IMS 566\"}', '{\"a_name\":\"Edit\",\"c_name\":\"Subjects\",\"ip\":\"::1\",\"url\":\"http:\\/\\/localhost\\/srcs\\/subjects\\/edit\\/2\",\"slug\":1}', 1, NULL, '2025-01-19 18:03:58'),
+(21, 'ca20a89d-d694-40d9-bfa8-bc7bf9d45d89', 'create', 3, 'subjects', NULL, '[]', '{\"subject_id\":3,\"subject_name\":\"Website Publishing\",\"subject_description\":\"This course introduces the basics of creating and managing websites. Students will learn how to use HTML, CSS, and basic JavaScript to design and build web pages. The course also covers topics like responsive design, website hosting, and using content management systems (CMS) like WordPress. By the end of the course, students will publish their own website and understand the key steps in website development and maintenance.\",\"subject_credits\":3,\"lecturer_id\":7,\"status\":1,\"subject_code\":\"IMS 561\"}', '{\"a_name\":\"Add\",\"c_name\":\"Subjects\",\"ip\":\"::1\",\"url\":\"http:\\/\\/localhost\\/srcs\\/subjects\\/add\",\"slug\":1}', 1, NULL, '2025-01-19 18:53:08'),
+(22, '2c7ed1a2-f56a-43ae-844e-659fd45f8f0a', 'create', 4, 'subjects', NULL, '[]', '{\"subject_id\":4,\"subject_name\":\"Website Publishing\",\"subject_description\":\"dadad\",\"subject_credits\":3,\"lecturer_id\":7,\"status\":1,\"subject_code\":\"IMS 561\"}', '{\"a_name\":\"Add\",\"c_name\":\"Subjects\",\"ip\":\"::1\",\"url\":\"http:\\/\\/localhost\\/srcs\\/subjects\\/add\",\"slug\":1}', 1, NULL, '2025-01-19 19:00:06'),
+(23, '4921dd4b-2738-4d84-b396-13022acbd8f0', 'delete', 4, 'subjects', NULL, NULL, NULL, '{\"a_name\":\"Delete\",\"c_name\":\"Subjects\",\"ip\":\"::1\",\"url\":\"http:\\/\\/localhost\\/srcs\\/subjects\\/delete\\/4\",\"slug\":1}', 1, NULL, '2025-01-19 19:00:19'),
+(24, '3fc253db-24a2-40ea-9d71-23d13a05dedd', 'create', 5, 'subjects', NULL, '[]', '{\"subject_id\":5,\"subject_name\":\"Website Publishing\",\"subject_description\":\"dadadd\",\"subject_credits\":3,\"lecturer_id\":7,\"status\":1,\"subject_code\":\"IMS 561\"}', '{\"a_name\":\"Add\",\"c_name\":\"Subjects\",\"ip\":\"::1\",\"url\":\"http:\\/\\/localhost\\/srcs\\/subjects\\/add\",\"slug\":1}', 1, NULL, '2025-01-19 19:05:36'),
+(25, 'fe912a36-eb0c-4bca-a9d8-f4d8c1e0834b', 'delete', 5, 'subjects', NULL, NULL, NULL, '{\"a_name\":\"Delete\",\"c_name\":\"Subjects\",\"ip\":\"::1\",\"url\":\"http:\\/\\/localhost\\/srcs\\/subjects\\/delete\\/5\",\"slug\":1}', 1, NULL, '2025-01-19 19:05:44'),
+(26, 'a2ec6437-08ba-4e28-85ee-96c83346863e', 'create', 6, 'subjects', NULL, '[]', '{\"subject_id\":6,\"subject_name\":\"Website Publishing\",\"subject_description\":\"dadada\",\"subject_credits\":3,\"lecturer_id\":7,\"status\":1,\"subject_code\":\"IMS 561\"}', '{\"a_name\":\"Add\",\"c_name\":\"Subjects\",\"ip\":\"::1\",\"url\":\"http:\\/\\/localhost\\/srcs\\/subjects\\/add\",\"slug\":1}', 1, NULL, '2025-01-19 19:06:53'),
+(27, 'e36bff20-2727-445f-b401-646aa61f3c4a', 'delete', 6, 'subjects', NULL, NULL, NULL, '{\"a_name\":\"Delete\",\"c_name\":\"Subjects\",\"ip\":\"::1\",\"url\":\"http:\\/\\/localhost\\/srcs\\/subjects\\/delete\\/6\",\"slug\":1}', 1, NULL, '2025-01-19 19:06:56'),
+(28, '202bbe8a-4927-4652-9bd6-1e91e1f61b91', 'update', 2, 'subjects', NULL, '{\"status\":1}', '{\"status\":0}', '{\"a_name\":\"Edit\",\"c_name\":\"Subjects\",\"ip\":\"::1\",\"url\":\"http:\\/\\/localhost\\/srcs\\/subjects\\/edit\\/2\",\"slug\":1}', 1, NULL, '2025-01-19 19:07:18');
 
 -- --------------------------------------------------------
 
@@ -146,8 +158,8 @@ INSERT INTO `faqs` (`id`, `category`, `question`, `answer`, `slug`, `status`, `c
 
 CREATE TABLE `lecturers` (
   `lecturer_id` int NOT NULL,
-  `lecturer_email` varchar(50) NOT NULL,
-  `lecturer_name` varchar(50) NOT NULL,
+  `lecturer_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `lecturer_email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `lecturer_department` varchar(50) NOT NULL,
   `faculty_id` int NOT NULL,
   `status` int NOT NULL,
@@ -159,8 +171,8 @@ CREATE TABLE `lecturers` (
 -- Dumping data for table `lecturers`
 --
 
-INSERT INTO `lecturers` (`lecturer_id`, `lecturer_email`, `lecturer_name`, `lecturer_department`, `faculty_id`, `status`, `created`, `modified`) VALUES
-(7, 'asyraf@124.gmail.com', 'asyraf', 'asas', 5, 1, '2025-01-18 21:03:50', '2025-01-18 21:47:23');
+INSERT INTO `lecturers` (`lecturer_id`, `lecturer_name`, `lecturer_email`, `lecturer_department`, `faculty_id`, `status`, `created`, `modified`) VALUES
+(7, 'asyraf', 'asyraf@124.gmail.com', 'asas', 5, 1, '2025-01-18 21:03:50', '2025-01-18 21:47:23');
 
 -- --------------------------------------------------------
 
@@ -328,7 +340,7 @@ CREATE TABLE `settings` (
 --
 
 INSERT INTO `settings` (`id`, `system_name`, `system_abbr`, `system_slogan`, `organization_name`, `domain_name`, `email`, `notification_email`, `meta_title`, `meta_keyword`, `meta_subject`, `meta_copyright`, `meta_desc`, `timezone`, `author`, `site_status`, `user_reg`, `config_2`, `config_3`, `version`, `private_key_from_recaptcha`, `public_key_from_recaptcha`, `banned_username`, `telegram_bot_token`, `telegram_chatid`, `hcaptcha_sitekey`, `hcaptcha_secretkey`, `notification`, `notification_status`, `notification_date`, `ribbon_title`, `ribbon_link`, `ribbon_status`, `created`, `modified`) VALUES
-('recrud', 'Code The Pixel', 'Re-CRUD', 'Code The Experiences', 'Code The Pixel Inc.', 'codethepixel.com', 'noreply@codethepixel.com', 'noreply@codethepixel.com', 'Re-CRUD', 'Re-CRUD, CakePHP, Learning, CRUD', 'Re-CRUD', 'Re-CRUD', 'Re-CRUD', 'Asia/Kuala_Lumpur', 'Re-CRUD', 0, 0, 0, 0, '1.1', '', '', NULL, '', '', '', '', '<p><strong>Server maintenance</strong> is scheduled to be executed on Jan 1, 2023, from 1.00 am to 4.00 am. An intermittent connection is expected during the server maintenance period.</p>', 0, '2022-11-07', 'Code The Pixel', 'https://codethepixel.com', 0, '2020-04-08 20:56:04', '2024-07-08 20:58:44');
+('recrud', 'Student Registration Course System', 'SRCS', 'Code The Experiences', 'Code The Pixel Inc.', 'codethepixel.com', 'noreply@codethepixel.com', 'noreply@codethepixel.com', 'Re-CRUD', 'Re-CRUD, CakePHP, Learning, CRUD', 'Re-CRUD', 'Re-CRUD', 'Re-CRUD', 'Asia/Kuala_Lumpur', 'Re-CRUD', 0, 0, 0, 0, '1.1', '', '', NULL, '', '', '', '', '<p><strong>Server maintenance</strong> is scheduled to be executed on Jan 1, 2023, from 1.00 am to 4.00 am. An intermittent connection is expected during the server maintenance period.</p>', 0, '2022-11-07', 'Code The Pixel', 'https://codethepixel.com', 0, '2020-04-08 20:56:04', '2025-01-19 19:56:05');
 
 -- --------------------------------------------------------
 
@@ -341,18 +353,25 @@ CREATE TABLE `students` (
   `student_name` varchar(50) NOT NULL,
   `student_email` varchar(50) NOT NULL,
   `student_phone` int NOT NULL,
-  `student_address` text NOT NULL,
+  `student_address1` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `status` int DEFAULT '1',
   `created` datetime DEFAULT NULL,
-  `modified` datetime DEFAULT NULL
+  `modified` datetime DEFAULT NULL,
+  `student_address2` varchar(255) NOT NULL,
+  `student_postcode` varchar(255) NOT NULL,
+  `student_city` varchar(255) NOT NULL,
+  `student_state` varchar(255) NOT NULL,
+  `faculty_id` int NOT NULL,
+  `semester_id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `students`
 --
 
-INSERT INTO `students` (`student_id`, `student_name`, `student_email`, `student_phone`, `student_address`, `status`, `created`, `modified`) VALUES
-(1, 'razma', 'raz@gmail.com', 166423154, 'no.9', 1, NULL, NULL);
+INSERT INTO `students` (`student_id`, `student_name`, `student_email`, `student_phone`, `student_address1`, `status`, `created`, `modified`, `student_address2`, `student_postcode`, `student_city`, `student_state`, `faculty_id`, `semester_id`) VALUES
+(1, 'razma', 'raz@gmail.com', 166423154, 'no.9', 0, '2025-01-01 16:44:47', '2025-01-19 17:20:26', 'putih 1b/ku10', '41050', 'Klang', 'Selangor', 5, 1),
+(2, 'Muhamad Farhat bin Muhamad Akhdzar', 'farhatakhdzar2002@gmail.com', 126687616, 'No 28 jalan meranti', 1, '2025-01-19 17:18:44', '2025-01-19 17:18:44', 'putih 1b/ku10', '41050', 'Klang', 'Selangor', 5, 1);
 
 -- --------------------------------------------------------
 
@@ -368,15 +387,17 @@ CREATE TABLE `subjects` (
   `lecturer_id` int NOT NULL,
   `status` int DEFAULT '1',
   `created` datetime DEFAULT NULL,
-  `modified` datetime DEFAULT NULL
+  `modified` datetime DEFAULT NULL,
+  `subject_code` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `subjects`
 --
 
-INSERT INTO `subjects` (`subject_id`, `subject_name`, `subject_description`, `subject_credits`, `lecturer_id`, `status`, `created`, `modified`) VALUES
-(2, ' Advance Database', 'cuba', 3, 7, 1, NULL, NULL);
+INSERT INTO `subjects` (`subject_id`, `subject_name`, `subject_description`, `subject_credits`, `lecturer_id`, `status`, `created`, `modified`, `subject_code`) VALUES
+(2, ' Advance Database', 'cuba', 3, 7, 0, '2025-01-01 16:43:57', '2025-01-19 19:07:18', 'IMS 566'),
+(3, 'Website Publishing', 'This course introduces the basics of creating and managing websites. Students will learn how to use HTML, CSS, and basic JavaScript to design and build web pages. The course also covers topics like responsive design, website hosting, and using content management systems (CMS) like WordPress. By the end of the course, students will publish their own website and understand the key steps in website development and maintenance.', 3, 7, 1, '2025-01-19 18:53:08', '2025-01-19 18:53:08', 'IMS 561');
 
 -- --------------------------------------------------------
 
@@ -615,7 +636,7 @@ ALTER TABLE `user_logs`
 -- AUTO_INCREMENT for table `audit_logs`
 --
 ALTER TABLE `audit_logs`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `contacts`
@@ -663,13 +684,13 @@ ALTER TABLE `semesters`
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `student_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `student_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `subjects`
 --
 ALTER TABLE `subjects`
-  MODIFY `subject_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `subject_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `users`
