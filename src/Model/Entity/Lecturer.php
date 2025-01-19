@@ -9,8 +9,8 @@ use Cake\ORM\Entity;
  * Lecturer Entity
  *
  * @property int $lecturer_id
- * @property string $lecturer_email
  * @property string $lecturer_name
+ * @property string $lecturer_email
  * @property string $lecturer_department
  * @property int $faculty_id
  * @property int $status
@@ -31,8 +31,8 @@ class Lecturer extends Entity
      * @var array<string, bool>
      */
     protected array $_accessible = [
-        'lecturer_email' => true,
         'lecturer_name' => true,
+        'lecturer_email' => true,
         'lecturer_department' => true,
         'faculty_id' => true,
         'status' => true,

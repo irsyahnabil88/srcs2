@@ -36,8 +36,8 @@
             <fieldset>
                 <legend><?= __('Edit Lecturer') ?></legend>
                 
-                    <?php echo $this->Form->control('lecturer_email'); ?>
                     <?php echo $this->Form->control('lecturer_name'); ?>
+                    <?php echo $this->Form->control('lecturer_email'); ?>
                     <?php echo $this->Form->control('lecturer_department'); ?>
                     <?php echo $this->Form->control('faculty_id', ['options' => $faculties]); ?>
                     <?php echo $this->Form->control('status'); ?>

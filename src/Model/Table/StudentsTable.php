@@ -24,6 +24,8 @@ use Cake\Validation\Validator;
  * @method iterable<\App\Model\Entity\Student>|\Cake\Datasource\ResultSetInterface<\App\Model\Entity\Student> saveManyOrFail(iterable $entities, array $options = [])
  * @method iterable<\App\Model\Entity\Student>|\Cake\Datasource\ResultSetInterface<\App\Model\Entity\Student>|false deleteMany(iterable $entities, array $options = [])
  * @method iterable<\App\Model\Entity\Student>|\Cake\Datasource\ResultSetInterface<\App\Model\Entity\Student> deleteManyOrFail(iterable $entities, array $options = [])
+ *
+ * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class StudentsTable extends Table
 {
@@ -40,6 +42,17 @@ class StudentsTable extends Table
         $this->setTable('students');
         $this->setDisplayField('student_name');
         $this->setPrimaryKey('student_id');
+
+        $this->addBehavior('Timestamp');
+
+        $this->belongsTo('Faculties', [
+            'foreignKey' => 'faculty_id',
+            'joinType' => 'INNER',
+        ]);
+        $this->belongsTo('Semesters', [
+            'foreignKey' => 'semester_id',
+            'joinType' => 'INNER',
+        ]);
 		$this->addBehavior('AuditStash.AuditLog');
 		$this->addBehavior('Search.Search');
 		$this->searchManager()
@@ -83,10 +96,62 @@ class StudentsTable extends Table
             ->notEmptyString('student_phone');
 
         $validator
-            ->scalar('student_address')
-            ->requirePresence('student_address', 'create')
-            ->notEmptyString('student_address');
+            ->scalar('student_address1')
+            ->maxLength('student_address1', 255)
+            ->requirePresence('student_address1', 'create')
+            ->notEmptyString('student_address1');
+
+        $validator
+            ->integer('status')
+            ->allowEmptyString('status');
+
+        $validator
+            ->scalar('student_address2')
+            ->maxLength('student_address2', 255)
+            ->requirePresence('student_address2', 'create')
+            ->notEmptyString('student_address2');
+
+        $validator
+            ->scalar('student_postcode')
+            ->maxLength('student_postcode', 255)
+            ->requirePresence('student_postcode', 'create')
+            ->notEmptyString('student_postcode');
+
+        $validator
+            ->scalar('student_city')
+            ->maxLength('student_city', 255)
+            ->requirePresence('student_city', 'create')
+            ->notEmptyString('student_city');
+
+        $validator
+            ->scalar('student_state')
+            ->maxLength('student_state', 255)
+            ->requirePresence('student_state', 'create')
+            ->notEmptyString('student_state');
+
+        $validator
+            ->integer('faculty_id')
+            ->notEmptyString('faculty_id');
+
+        $validator
+            ->integer('semester_id')
+            ->notEmptyString('semester_id');
 
         return $validator;
+    }
+
+    /**
+     * Returns a rules checker object that will be used for validating
+     * application integrity.
+     *
+     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
+     * @return \Cake\ORM\RulesChecker
+     */
+    public function buildRules(RulesChecker $rules): RulesChecker
+    {
+        $rules->add($rules->existsIn(['faculty_id'], 'Faculties'), ['errorField' => 'faculty_id']);
+        $rules->add($rules->existsIn(['semester_id'], 'Semesters'), ['errorField' => 'semester_id']);
+
+        return $rules;
     }
 }

@@ -13,6 +13,10 @@ use Cake\ORM\Entity;
  * @property string $subject_description
  * @property int $subject_credits
  * @property int $lecturer_id
+ * @property int|null $status
+ * @property \Cake\I18n\DateTime|null $created
+ * @property \Cake\I18n\DateTime|null $modified
+ * @property string $subject_code
  *
  * @property \App\Model\Entity\Lecturer $lecturer
  */
@@ -32,6 +36,10 @@ class Subject extends Entity
         'subject_description' => true,
         'subject_credits' => true,
         'lecturer_id' => true,
+        'status' => true,
+        'created' => true,
+        'modified' => true,
+        'subject_code' => true,
         'lecturer' => true,
     ];
 }

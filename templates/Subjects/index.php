@@ -16,8 +16,8 @@
 <!--Header-->
 <div class="row text-body-secondary">
 	<div class="col-10">
-		<h1 class="my-0 page_title"><?php echo $title; ?></h1>
-		<h6 class="sub_title text-body-secondary"><?php echo $system_name; ?></h6>
+	<h1 class="my-0 page_title" style="font-size: 1.8rem; font-weight: bold; color: #0d6efd;"><?php echo $title; ?></h1>
+	<h6 class="sub_title text-body-secondary" style="font-size: 1rem; color: #6c757d;"><?php echo $system_name; ?></h6>
 	</div>
 	<div class="col-2 text-end">
 		<div class="dropdown mx-3 mt-2">
@@ -25,7 +25,7 @@
 			<i class="fa-solid fa-bars text-primary"></i>
 			</button>
 				<div class="dropdown-menu dropdown-menu-end" aria-labelledby="orederStatistics">
-							<li><?= $this->Html->link(__('<i class="fa-solid fa-plus"></i> New Subject'), ['action' => 'add'], ['class' => 'dropdown-item', 'escapeTitle' => false]) ?></li>
+							<li><?= $this->Html->link(('<i class="fa-solid fa-plus"></i> New Subject'), ['action' => 'add'], ['class' => 'dropdown-item', 'escapeTitle' => false]) ?></li>
 							</div>
 		</div>
 </div>
@@ -65,9 +65,9 @@
 		?>
                 <tr>
 					<th>#</th>
-                    <th><?= $this->Paginator->sort('subject_id') ?></th>
                     <th><?= $this->Paginator->sort('subject_name') ?></th>
                     <th><?= $this->Paginator->sort('subject_credits') ?></th>
+					<th><?= $this->Paginator->sort('status') ?></th>
                     <th><?= $this->Paginator->sort('lecturer_id') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
@@ -76,14 +76,22 @@
                 <?php foreach ($subjects as $subject): ?>
                 <tr>
 				<td><?php echo $counter++ ?></td>
-                    <td><?= $this->Number->format($subject->subject_id) ?></td>
-                    <td><?= h($subject->subject_name) ?></td>
+                    <td><?= h($subject->subject_code) ?><br>
+					<?= h($subject->subject_name) ?> 
+					</td>
                     <td><?= $this->Number->format($subject->subject_credits) ?></td>
-                    <td><?= $subject->hasValue('lecturer') ? $this->Html->link($subject->lecturer->lecturer_email, ['controller' => 'Lecturers', 'action' => 'view', $subject->lecturer->lecturer_id]) : '' ?></td>
-					<td class="actions text-center">
+                    <td><?php if ($subject->status == 1){
+                                echo '<span class="badge bg-success">Active</i>';
+                            } elseif ($subject->status == 0){
+                                echo '<span class="badge bg-danger">Not Active </i>';
+                            } else
+                                echo '<span class="badge bg-warning">Error></i>';
+                            ?></td>
+					<td><?=($subject->lecturer->lecturer_name) ?></td>
+					<td>
 						<div class="btn-group shadow" role="group" aria-label="Basic example">
-							<?= $this->Html->link(__('<i class="far fa-folder-open"></i>'), ['action' => 'view', $subject->subject_id], ['class' => 'btn btn-outline-primary btn-xs', 'escapeTitle' => false]) ?>
-							<?= $this->Html->link(__('<i class="fa-regular fa-pen-to-square"></i>'), ['action' => 'edit', $subject->subject_id], ['class' => 'btn btn-outline-warning btn-xs', 'escapeTitle' => false]) ?>
+							<?= $this->Html->link(('<i class="far fa-folder-open"></i>'), ['action' => 'view', $subject->subject_id], ['class' => 'btn btn-outline-primary btn-xs', 'escapeTitle' => false]) ?>
+							<?= $this->Html->link(('<i class="fa-regular fa-pen-to-square"></i>'), ['action' => 'edit', $subject->subject_id], ['class' => 'btn btn-outline-warning btn-xs', 'escapeTitle' => false]) ?>
 							<?php $this->Form->setTemplates([
 								'confirmJs' => 'addToModal("{{formName}}"); return false;'
 							]); ?>
@@ -111,10 +119,10 @@
         <?= $this->Paginator->first('<< ' . __('First')) ?>
         <?= $this->Paginator->prev('< ' . __('Previous')) ?>
         <?= $this->Paginator->numbers(['before' => '', 'after' => '']) ?>
-        <?= $this->Paginator->next(__('Next') . ' >') ?>
-        <?= $this->Paginator->last(__('Last') . ' >>') ?>
+        <?= $this->Paginator->next(('Next') . ' >') ?>
+        <?= $this->Paginator->last(('Last') . ' >>') ?>
     </ul>
-    <div class="text-end"><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></div>
+    <div class="text-end"><?= $this->Paginator->counter(('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></div>
 </div>
 	</div>
 </div>
@@ -332,10 +340,10 @@ const status = new Chart(ctx_2, {
 			<?php 
 				if (!empty($_isSearch)) {
 					echo ' ';
-					echo $this->Html->link(__('Reset'), ['action' => 'index', '?' => array_intersect_key($this->request->getQuery(), array_flip(['sort', 'direction']))], ['class' => 'btn btn-outline-warning btn-sm']);
+					echo $this->Html->link(('Reset'), ['action' => 'index', '?' => array_intersect_key($this->request->getQuery(), array_flip(['sort', 'direction']))], ['class' => 'btn btn-outline-warning btn-sm']);
 				}
 				echo '&nbsp;&nbsp;';
-				echo $this->Form->button(__('Search'), ['class' => 'btn btn-outline-primary btn-sm']);
+				echo $this->Form->button(('Search'), ['class' => 'btn btn-outline-primary btn-sm']);
 			?>
 			<?= $this->Form->end() ?>
 		</div>

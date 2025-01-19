@@ -20,13 +20,13 @@ class LecturersFixture extends TestFixture
         $this->records = [
             [
                 'lecturer_id' => 1,
-                'lecturer_email' => 'Lorem ipsum dolor sit amet',
                 'lecturer_name' => 'Lorem ipsum dolor sit amet',
+                'lecturer_email' => 'Lorem ipsum dolor sit amet',
                 'lecturer_department' => 'Lorem ipsum dolor sit amet',
                 'faculty_id' => 1,
                 'status' => 1,
-                'created' => '2025-01-18 19:29:43',
-                'modified' => '2025-01-18 19:29:43',
+                'created' => '2025-01-19 20:01:37',
+                'modified' => '2025-01-19 20:01:37',
             ],
         ];
         parent::init();

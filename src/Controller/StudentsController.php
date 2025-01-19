@@ -72,92 +72,97 @@ class StudentsController extends AppController
      * @return \Cake\Http\Response|null|void Renders view
      */
     public function index()
-    {
-		$this->set('title', 'Students List');
-		$this->paginate = [
-			'maxLimit' => 10,
-        ];
-        $query = $this->Students->find('search', search: $this->request->getQueryParams());
-        $students = $this->paginate($query);
-		
-		//count
-		$this->set('total_students', $this->Students->find()->count());
-		$this->set('total_students_archived', $this->Students->find()->where(['status' => 2])->count());
-		$this->set('total_students_active', $this->Students->find()->where(['status' => 1])->count());
-		$this->set('total_students_disabled', $this->Students->find()->where(['status' => 0])->count());
-		
-		//Count By Month
-		$this->set('january', $this->Students->find()->where(['MONTH(created)' => date('1'), 'YEAR(created)' => date('Y')])->count());
-		$this->set('february', $this->Students->find()->where(['MONTH(created)' => date('2'), 'YEAR(created)' => date('Y')])->count());
-		$this->set('march', $this->Students->find()->where(['MONTH(created)' => date('3'), 'YEAR(created)' => date('Y')])->count());
-		$this->set('april', $this->Students->find()->where(['MONTH(created)' => date('4'), 'YEAR(created)' => date('Y')])->count());
-		$this->set('may', $this->Students->find()->where(['MONTH(created)' => date('5'), 'YEAR(created)' => date('Y')])->count());
-		$this->set('jun', $this->Students->find()->where(['MONTH(created)' => date('6'), 'YEAR(created)' => date('Y')])->count());
-		$this->set('july', $this->Students->find()->where(['MONTH(created)' => date('7'), 'YEAR(created)' => date('Y')])->count());
-		$this->set('august', $this->Students->find()->where(['MONTH(created)' => date('8'), 'YEAR(created)' => date('Y')])->count());
-		$this->set('september', $this->Students->find()->where(['MONTH(created)' => date('9'), 'YEAR(created)' => date('Y')])->count());
-		$this->set('october', $this->Students->find()->where(['MONTH(created)' => date('10'), 'YEAR(created)' => date('Y')])->count());
-		$this->set('november', $this->Students->find()->where(['MONTH(created)' => date('11'), 'YEAR(created)' => date('Y')])->count());
-		$this->set('december', $this->Students->find()->where(['MONTH(created)' => date('12'), 'YEAR(created)' => date('Y')])->count());
+{
+    $this->set('title', 'Students List');
+    $this->paginate = [
+        'maxLimit' => 10,
+    ];
+    
+    // Include related models with the `contain` option
+    $query = $this->Students->find('search', [
+        'search' => $this->request->getQueryParams(),
+    ])->contain(['Faculties', 'Semesters']); // Adjust with your related table names
 
-		$query = $this->Students->find();
+    $students = $this->paginate($query);
+    
+    // Counts for different statuses
+    $this->set('total_students', $this->Students->find()->count());
+    $this->set('total_students_archived', $this->Students->find()->where(['status' => 2])->count());
+    $this->set('total_students_active', $this->Students->find()->where(['status' => 1])->count());
+    $this->set('total_students_disabled', $this->Students->find()->where(['status' => 0])->count());
 
-        $expectedMonths = [];
-        for ($i = 11; $i >= 0; $i--) {
-            $expectedMonths[] = date('M-Y', strtotime("-$i months"));
-        }
+    // Count By Month
+    $this->set('january', $this->Students->find()->where(['MONTH(created)' => 1, 'YEAR(created)' => date('Y')])->count());
+    $this->set('february', $this->Students->find()->where(['MONTH(created)' => 2, 'YEAR(created)' => date('Y')])->count());
+    $this->set('march', $this->Students->find()->where(['MONTH(created)' => 3, 'YEAR(created)' => date('Y')])->count());
+    $this->set('april', $this->Students->find()->where(['MONTH(created)' => 4, 'YEAR(created)' => date('Y')])->count());
+    $this->set('may', $this->Students->find()->where(['MONTH(created)' => 5, 'YEAR(created)' => date('Y')])->count());
+    $this->set('june', $this->Students->find()->where(['MONTH(created)' => 6, 'YEAR(created)' => date('Y')])->count());
+    $this->set('july', $this->Students->find()->where(['MONTH(created)' => 7, 'YEAR(created)' => date('Y')])->count());
+    $this->set('august', $this->Students->find()->where(['MONTH(created)' => 8, 'YEAR(created)' => date('Y')])->count());
+    $this->set('september', $this->Students->find()->where(['MONTH(created)' => 9, 'YEAR(created)' => date('Y')])->count());
+    $this->set('october', $this->Students->find()->where(['MONTH(created)' => 10, 'YEAR(created)' => date('Y')])->count());
+    $this->set('november', $this->Students->find()->where(['MONTH(created)' => 11, 'YEAR(created)' => date('Y')])->count());
+    $this->set('december', $this->Students->find()->where(['MONTH(created)' => 12, 'YEAR(created)' => date('Y')])->count());
 
-        $query->select([
-            'count' => $query->func()->count('*'),
-            'date' => $query->func()->date_format(['created' => 'identifier', "%b-%Y"]),
-            'month' => 'MONTH(created)',
-            'year' => 'YEAR(created)'
-        ])
-            ->where([
-                'created >=' => date('Y-m-01', strtotime('-11 months')),
-                'created <=' => date('Y-m-t')
-            ])
-            ->groupBy(['year', 'month'])
-            ->orderBy(['year' => 'ASC', 'month' => 'ASC']);
-
-        $results = $query->all()->toArray();
-
-        $totalByMonth = [];
-        foreach ($expectedMonths as $expectedMonth) {
-            $found = false;
-            $count = 0;
-
-            foreach ($results as $result) {
-                if ($expectedMonth === $result->date) {
-                    $found = true;
-                    $count = $result->count;
-                    break;
-                }
-            }
-
-            $totalByMonth[] = [
-                'month' => $expectedMonth,
-                'count' => $count
-            ];
-        }
-
-        $this->set([
-            'results' => $totalByMonth,
-            '_serialize' => ['results']
-        ]);
-
-        //data as JSON arrays for report chart
-        $totalByMonth = json_encode($totalByMonth);
-        $dataArray = json_decode($totalByMonth, true);
-        $monthArray = [];
-        $countArray = [];
-        foreach ($dataArray as $data) {
-            $monthArray[] = $data['month'];
-            $countArray[] = $data['count'];
-        }
-
-        $this->set(compact('students', 'monthArray', 'countArray'));
+    // Monthly Statistics
+    $query = $this->Students->find();
+    $expectedMonths = [];
+    for ($i = 11; $i >= 0; $i--) {
+        $expectedMonths[] = date('M-Y', strtotime("-$i months"));
     }
+
+    $query->select([
+        'count' => $query->func()->count('*'),
+        'date' => $query->func()->date_format(['created' => 'identifier', "%b-%Y"]),
+        'month' => 'MONTH(created)',
+        'year' => 'YEAR(created)'
+    ])
+    ->where([
+        'created >=' => date('Y-m-01', strtotime('-11 months')),
+        'created <=' => date('Y-m-t')
+    ])
+    ->group(['year', 'month'])
+    ->order(['year' => 'ASC', 'month' => 'ASC']);
+
+    $results = $query->all()->toArray();
+
+    $totalByMonth = [];
+    foreach ($expectedMonths as $expectedMonth) {
+        $found = false;
+        $count = 0;
+
+        foreach ($results as $result) {
+            if ($expectedMonth === $result->date) {
+                $found = true;
+                $count = $result->count;
+                break;
+            }
+        }
+
+        $totalByMonth[] = [
+            'month' => $expectedMonth,
+            'count' => $count
+        ];
+    }
+
+    $this->set([
+        'results' => $totalByMonth,
+        '_serialize' => ['results']
+    ]);
+
+    // Data for report chart
+    $totalByMonth = json_encode($totalByMonth);
+    $dataArray = json_decode($totalByMonth, true);
+    $monthArray = [];
+    $countArray = [];
+    foreach ($dataArray as $data) {
+        $monthArray[] = $data['month'];
+        $countArray[] = $data['count'];
+    }
+
+    $this->set(compact('students', 'monthArray', 'countArray'));
+}
 
     /**
      * View method
@@ -169,9 +174,10 @@ class StudentsController extends AppController
     public function view($id = null)
     {
 		$this->set('title', 'Students Details');
-        $student = $this->Students->get($id, contain: []);
-        $this->set(compact('student'));
-
+        $student = $this->Students->get($id, [
+            'contain' => ['Semesters', 'Faculties'], // Include related data for display
+        ]);
+    
         $this->set(compact('student'));
     }
 
@@ -180,6 +186,8 @@ class StudentsController extends AppController
      *
      * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
      */
+
+     
     public function add()
     {
 		$this->set('title', 'New Students');
@@ -193,17 +201,26 @@ class StudentsController extends AppController
 			}
 		});
         $student = $this->Students->newEmptyEntity();
-        if ($this->request->is('post')) {
-            $student = $this->Students->patchEntity($student, $this->request->getData());
-            if ($this->Students->save($student)) {
-                $this->Flash->success(__('The student has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('The student could not be saved. Please, try again.'));
+    if ($this->request->is('post')) {
+        $student = $this->Students->patchEntity($student, $this->request->getData());
+        if ($this->Students->save($student)) {
+            $this->Flash->success(__('The student has been saved.'));
+
+            return $this->redirect(['action' => 'index']);
         }
-        $this->set(compact('student'));
+        $this->Flash->error(__('The student could not be saved. Please, try again.'));
     }
+
+    // Fetch the list of semesters and faculties
+    $semesters = $this->Students->Semesters->find('list', ['limit' => 200])->toArray();
+    $faculties = $this->Students->Faculties->find('list', ['limit' => 200])->toArray();
+
+    // Pass data to the view
+    $this->set(compact('student', 'semesters', 'faculties'));
+}
+
+    
 
     /**
      * Edit method
@@ -224,19 +241,23 @@ class StudentsController extends AppController
 				$log->setMetaInfo($log->getMetaInfo() + ['slug' => $this->Authentication->getIdentity('slug')->getIdentifier('slug')]);
 			}
 		});
-        $student = $this->Students->get($id, [
-            'contain' => [],
-        ]);
+        $student = $this->Students->get($id);
+
         if ($this->request->is(['patch', 'post', 'put'])) {
             $student = $this->Students->patchEntity($student, $this->request->getData());
             if ($this->Students->save($student)) {
-                $this->Flash->success(__('The student has been saved.'));
-
+                $this->Flash->success(__('The student has been updated.'));
+    
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The student could not be saved. Please, try again.'));
+            $this->Flash->error(__('The student could not be updated. Please, try again.'));
         }
-        $this->set(compact('student'));
+    
+        // Fetch the list of semesters and faculties
+        $semesters = $this->Students->Semesters->find('list', ['limit' => 200])->toArray();
+        $faculties = $this->Students->Faculties->find('list', ['limit' => 200])->toArray();
+    
+        $this->set(compact('student', 'semesters', 'faculties'));
     }
 
     /**

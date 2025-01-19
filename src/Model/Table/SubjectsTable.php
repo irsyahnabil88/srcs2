@@ -26,6 +26,8 @@ use Cake\Validation\Validator;
  * @method iterable<\App\Model\Entity\Subject>|\Cake\Datasource\ResultSetInterface<\App\Model\Entity\Subject> saveManyOrFail(iterable $entities, array $options = [])
  * @method iterable<\App\Model\Entity\Subject>|\Cake\Datasource\ResultSetInterface<\App\Model\Entity\Subject>|false deleteMany(iterable $entities, array $options = [])
  * @method iterable<\App\Model\Entity\Subject>|\Cake\Datasource\ResultSetInterface<\App\Model\Entity\Subject> deleteManyOrFail(iterable $entities, array $options = [])
+ *
+ * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class SubjectsTable extends Table
 {
@@ -42,6 +44,8 @@ class SubjectsTable extends Table
         $this->setTable('subjects');
         $this->setDisplayField('subject_name');
         $this->setPrimaryKey('subject_id');
+
+        $this->addBehavior('Timestamp');
 
         $this->belongsTo('Lecturers', [
             'foreignKey' => 'lecturer_id',
@@ -91,6 +95,16 @@ class SubjectsTable extends Table
         $validator
             ->integer('lecturer_id')
             ->notEmptyString('lecturer_id');
+
+        $validator
+            ->integer('status')
+            ->allowEmptyString('status');
+
+        $validator
+            ->scalar('subject_code')
+            ->maxLength('subject_code', 255)
+            ->requirePresence('subject_code', 'create')
+            ->notEmptyString('subject_code');
 
         return $validator;
     }

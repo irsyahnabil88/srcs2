@@ -12,7 +12,16 @@ use Cake\ORM\Entity;
  * @property string $student_name
  * @property string $student_email
  * @property int $student_phone
- * @property string $student_address
+ * @property string $student_address1
+ * @property int|null $status
+ * @property \Cake\I18n\DateTime|null $created
+ * @property \Cake\I18n\DateTime|null $modified
+ * @property string $student_address2
+ * @property string $student_postcode
+ * @property string $student_city
+ * @property string $student_state
+ * @property int $faculty_id
+ * @property int $semester_id
  */
 class Student extends Entity
 {
@@ -29,6 +38,15 @@ class Student extends Entity
         'student_name' => true,
         'student_email' => true,
         'student_phone' => true,
-        'student_address' => true,
+        'student_address1' => true,
+        'status' => true,
+        'created' => true,
+        'modified' => true,
+        'student_address2' => true,
+        'student_postcode' => true,
+        'student_city' => true,
+        'student_state' => true,
+        'faculty_id' => true,
+        'semester_id' => true,
     ];
 }
