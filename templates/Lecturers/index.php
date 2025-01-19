@@ -67,7 +67,7 @@
 					<th>#</th>
                     <th><?= $this->Paginator->sort('lecturer_id') ?></th>
                     <th><?= $this->Paginator->sort('lecturer_email') ?></th>
-                    <th><?= $this->Paginator->sort('lecturer_name') ?></th>
+                    <th><?= $this->Paginator->sort('lecturer_name') ?></th> <!--test-->
                     <th><?= $this->Paginator->sort('lecturer_department') ?></th>
                     <th><?= $this->Paginator->sort('faculty_id') ?></th>
                     <th><?= $this->Paginator->sort('status') ?></th>
