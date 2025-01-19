@@ -38,7 +38,7 @@
                     <?php echo $this->Form->control('semester_name'); ?>
                     <?php echo $this->Form->control('semester_startdate'); ?>
                     <?php echo $this->Form->control('semester_enddate'); ?>
-                    <?php echo $this->Form->control('course_id'); ?>
+                    
                     <?php echo $this->Form->control('status'); ?>
                
             </fieldset>

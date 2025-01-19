@@ -13,6 +13,27 @@
 	$c_name = $this->request->getParam('controller');
 	echo $this->Html->script('bootstrapModal', ['block' => 'scriptBottom']);
 ?>
+
+<style>
+    /* Center the text "Actions" in the header */
+    table th.actions {
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    /* Center the content in the Actions column */
+    table td.actions {
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    /* Ensure buttons are centered below the Actions header */
+    table td.actions .btn-group {
+        display: inline-flex;
+        justify-content: center;
+    }
+</style>
+
 <!--Header-->
 <div class="row text-body-secondary">
 	<div class="col-10">
@@ -69,10 +90,8 @@
                     <th><?= $this->Paginator->sort('semester_name') ?></th>
                     <th><?= $this->Paginator->sort('semester_startdate') ?></th>
                     <th><?= $this->Paginator->sort('semester_enddate') ?></th>
-                    <th><?= $this->Paginator->sort('course_id') ?></th>
                     <th><?= $this->Paginator->sort('status') ?></th>
-                    <th><?= $this->Paginator->sort('created') ?></th>
-                    <th><?= $this->Paginator->sort('modified') ?></th>
+                    
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -84,10 +103,18 @@
                     <td><?= h($semester->semester_name) ?></td>
                     <td><?= h($semester->semester_startdate) ?></td>
                     <td><?= h($semester->semester_enddate) ?></td>
-                    <td><?= h($semester->course_id) ?></td>
-                    <td><?= $this->Number->format($semester->status) ?></td>
-                    <td><?= h($semester->created) ?></td>
-                    <td><?= h($semester->modified) ?></td>
+                    <td>
+    <?php 
+        if ($semester->status == 1) {
+            echo '<span class="badge bg-success">Active</span>';
+        } elseif ($semester->status == 0) {
+            echo '<span class="badge bg-danger">Not Active</span>';
+        } else {
+            echo '<span class="badge bg-warning">Error</span>';
+        }
+    ?>
+</td>
+                   
 					<td class="actions text-center">
 						<div class="btn-group shadow" role="group" aria-label="Basic example">
 							<?= $this->Html->link(__('<i class="far fa-folder-open"></i>'), ['action' => 'view', $semester->semester_id], ['class' => 'btn btn-outline-primary btn-xs', 'escapeTitle' => false]) ?>
