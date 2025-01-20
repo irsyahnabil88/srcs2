@@ -34,7 +34,7 @@
 			<div class="card-body text-body-secondary">
             <h3><?= h($lecturer->lecturer_email) ?></h3>
     <div class="table-responsive">
-        <table class="table">
+        <table class="table table-borderless">
                 <tr>
                     <th><?= __('Lecturer Name') ?></th>
                     <td><?= h($lecturer->lecturer_name) ?></td>
@@ -57,7 +57,15 @@
                 </tr>
                 <tr>
                     <th><?= __('Status') ?></th>
-                    <td><?= $this->Number->format($lecturer->status) ?></td>
+                    <td>
+                                <?php if ($lecturer->status == 1): ?>
+                                    <span class="badge bg-success">Active</span>
+                                <?php elseif ($lecturer->status == 0): ?>
+                                    <span class="badge bg-danger">Inactive</span>
+                                <?php else: ?>
+                                    <span class="badge bg-warning">Unknown</span>
+                                <?php endif; ?>
+                            </td>
                 </tr>
                 <tr>
                     <th><?= __('Created') ?></th>

@@ -71,8 +71,7 @@
                     <th><?= $this->Paginator->sort('lecturer_department') ?></th>
                     <th><?= $this->Paginator->sort('faculty_id') ?></th>
                     <th><?= $this->Paginator->sort('status') ?></th>
-                    <th><?= $this->Paginator->sort('created') ?></th>
-                    <th><?= $this->Paginator->sort('modified') ?></th>
+                    
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -85,9 +84,18 @@
                     <td><?= h($lecturer->lecturer_email) ?></td>
                     <td><?= h($lecturer->lecturer_department) ?></td>
                     <td><?= $lecturer->hasValue('faculty') ? $this->Html->link($lecturer->faculty->faculty_department, ['controller' => 'Faculties', 'action' => 'view', $lecturer->faculty->faculty_id]) : '' ?></td>
-                    <td><?= $this->Number->format($lecturer->status) ?></td>
-                    <td><?= h($lecturer->created) ?></td>
-                    <td><?= h($lecturer->modified) ?></td>
+                    <td>
+    <?php 
+        if ($lecturer->status == 1) {
+            echo '<span class="badge bg-success">Active</span>';
+        } elseif ($lecturer->status == 0) {
+            echo '<span class="badge bg-danger">Not Active</span>';
+        } else {
+            echo '<span class="badge bg-warning">Error</span>';
+        }
+    ?>
+</td>
+                    
 					<td class="actions text-center">
 						<div class="btn-group shadow" role="group" aria-label="Basic example">
 							<?= $this->Html->link(__('<i class="far fa-folder-open"></i>'), ['action' => 'view', $lecturer->lecturer_id], ['class' => 'btn btn-outline-primary btn-xs', 'escapeTitle' => false]) ?>
