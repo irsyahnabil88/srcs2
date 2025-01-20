@@ -8,8 +8,8 @@
 <!--Header-->
 <div class="row text-body-secondary">
 	<div class="col-10">
-		<h1 class="my-0 page_title"><?php echo $title; ?></h1>
-		<h6 class="sub_title text-body-secondary"><?php echo $system_name; ?></h6>
+    <h1 class="my-0 page_title" style="font-size: 1.8rem; font-weight: bold; color: #0d6efd;"><?php echo $title; ?></h1>
+    <h6 class="sub_title text-body-secondary" style="font-size: 1rem; color: #6c757d;"><?php echo $system_name; ?></h6>
 	</div>
 	<div class="col-2 text-end">
 		<div class="dropdown mx-3 mt-2">
@@ -34,12 +34,33 @@
     <div class="card-body text-body-secondary">
             <?= $this->Form->create($lecturer) ?>
             <fieldset>
-                <legend><?= __('Edit Lecturer') ?></legend>
-                
+
+                <div class="row">
+                   
+                    <div class="col-md-6">
                     <?php echo $this->Form->control('lecturer_name'); ?>
+                </div>
+                <div class="col-md-6">
                     <?php echo $this->Form->control('lecturer_email'); ?>
+                </div>
+            </div>
+
+            <div class="row">
+               
+                <div class="col-md-6">
                     <?php echo $this->Form->control('lecturer_Faculty'); ?>
-                    <?php echo $this->Form->control('faculty_Department', ['options' => $faculties]); ?>
+                    </div>
+                    <div class="col-md-6">
+                    <?php echo $this->Form->control('faculty_Department', [
+                       'label' => 'Faculty Department',
+						'options' => $faculties,
+						'empty' => 'Select Faculty',
+						'class'=> 'form-select'
+                        ]); ?>
+                </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
                     <?= $this->Form->control('status', [
                     'type' => 'select',
                     'options' => [
@@ -47,11 +68,12 @@
                         '0' => 'Inactive',
                     ],
                     'empty' => false,
-                    'class' => 'form-select form-select-sm', // Correct class for smaller size
-                    'label' => false, // Hide the default label from FormHelper
+                    'class' => 'form-select', // Correct class for smaller size
+                    'label' => 'Status', // Hide the default label from FormHelper
                     'id' => 'status' // Explicit ID if needed
                 ]); ?>
-               
+               </div>
+            </div>
             </fieldset>
 				<div class="text-end">
 				  <?= $this->Form->button('Reset', ['type' => 'reset', 'class' => 'btn btn-outline-warning']); ?>

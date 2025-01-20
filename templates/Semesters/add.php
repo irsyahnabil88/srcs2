@@ -7,8 +7,8 @@
 <!-- Header -->
 <div class="row text-body-secondary">
     <div class="col-10">
-        <h1 class="my-0 page_title"><?= $title; ?></h1>
-        <h6 class="sub_title text-body-secondary"><?= $system_name; ?></h6>
+    <h1 class="my-0 page_title" style="font-size: 1.8rem; font-weight: bold; color: #0d6efd;"><?php echo $title; ?></h1>
+    <h6 class="sub_title text-body-secondary" style="font-size: 1rem; color: #6c757d;"><?php echo $system_name; ?></h6>
     </div>
     <div class="col-2 text-end">
         <div class="dropdown mx-3 mt-2">
@@ -65,7 +65,7 @@
                         '0' => 'Inactive',
                     ],
                     'empty' => false,
-                    'class' => 'form-select form-select-sm', // Correct class for smaller size
+                    'class' => 'form-select', // Correct class for smaller size
                     'label' => false, // Hide the default label from FormHelper
                     'id' => 'status' // Explicit ID if needed
                 ]); ?>

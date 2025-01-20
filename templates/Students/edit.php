@@ -33,15 +33,13 @@
             <fieldset>
                 
                     <?php echo $this->Form->control('student_name', [
-						'label' => 'Name <i class="fa-solid fa-info-circle" data-bs-toggle="tooltip" title="Enter the full name of the student."></i>',
-                		'escape' => false
+						'label' => 'Name',
 					]); ?>
 
 					<div class="row">
 					<div class="col-md-6">
 					<?php echo $this->Form->control('semester_id', [
-						'label' => 'Semester <i class="fa-solid fa-calendar-days"></i>',
-						'escape' => false,
+						'label' => 'Semester',
 						'options' => $semesters,
 						'empty' => 'Select Semester',
 						'class'=> 'form-select'
@@ -50,10 +48,9 @@
 
 					<div class="col-md-6">
 					<?php echo $this->Form->control('faculty_id', [
-						'label' => 'Faculty Department <i class="fa-solid fa-building"></i>',
-						'escape' => false,
+						'label' => 'Faculty',
 						'options' => $faculties,
-						'empty' => 'Select Faculty Department',
+						'empty' => 'Select Faculty',
 						'class'=> 'form-select'
 					]); ?>
 					</div>
@@ -62,7 +59,7 @@
 					
 					<div class="row">
 					<div class="col-md-2">
-                    <?php echo $this->Form->control('status', [
+					<?php echo $this->Form->control('status', [
                     'options' => [
                         1 => 'Active',
                         0 => 'Not Active',
@@ -75,16 +72,14 @@
 
 						<div class="col-md-5">
 						 <?php echo $this->Form->control('student_phone', [
-						'label' => 'Phone Number <i class="fa-solid fa-phone"></i>',
-                        'escape' => false,
+						'label' => 'Phone Number',
 						 'id' => 'student-phone'
 					]); ?>
 						</div>
 						<div class="col-md-5">
                     <?php echo $this->Form->control('student_email', [
 						'type' => 'email',
-                        'label' => 'Email <i class="fa-solid fa-envelope"></i>',
-                        'escape' => false,
+                        'label' => 'Email',
 						'id' => 'student-email'
 					]); ?>
 						</div>
@@ -93,14 +88,12 @@
 					<div class="row">
 						<div class="col-md-6">
                     <?php echo $this->Form->control('student_address1', [
-						'label' => 'Address 1 <i class="fa-solid fa-location-dot"></i>',
-						'escape' => false
+						'label' => 'Address 1',
 					]); ?></div>
                     
 					<div class="col-md-6">
                     <?php echo $this->Form->control('student_address2', [
-						'label' => 'Address 2 <i class="fa-solid fa-location-dot"></i>',
-						'escape' => false
+						'label' => 'Address 2',
 					]); ?>
 					</div>
 					</div>
@@ -108,23 +101,20 @@
 					<div class="row">
 						<div class="col-md-2">
                     <?php echo $this->Form->control('student_postcode', [
-						'label' => 'Postcode <i class="fa-solid fa-map-location"></i>',
-						'escape' => false,
+						'label' => 'Postcode',
 						 'id' => 'student-postcode'
 					]); ?>
 					</div>
 
 					<div class="col-md-5">
                     <?php echo $this->Form->control('student_city', [
-						'label' => 'City <i class="fa-solid fa-city"></i>',
-						'escape' => false
+						'label' => 'City',
 					]); ?>
 					</div>
 
 					<div class="col-md-5">
                     <?php echo $this->Form->control('student_state', [
-						'label' => 'State <i class="fa-solid fa-flag"></i>',
-						'escape' => false,
+						'label' => 'State',
 						'options' =>[
 							'Selangor' => 'Selangor',
 							'Negeri Sembilan' => 'Negeri Sembilan',

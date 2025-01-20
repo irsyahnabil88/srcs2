@@ -1,54 +1,78 @@
-registrations/edit.php
 
-<?php
-/**
- * @var \App\View\AppView $this
- * @var \App\Model\Entity\Registration $registration
- * @var string[]|\Cake\Collection\CollectionInterface $students
- * @var string[]|\Cake\Collection\CollectionInterface $subjects
- */
-?>
-<!--Header-->
-<div class="row text-body-secondary">
-	<div class="col-10">
-		<h1 class="my-0 page_title"><?php echo $title; ?></h1>
-		<h6 class="sub_title text-body-secondary"><?php echo $system_name; ?></h6>
-	</div>
-	<div class="col-2 text-end">
-		<div class="dropdown mx-3 mt-2">
-			<button class="btn p-0 border-0" type="button" id="orederStatistics" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			<i class="fa-solid fa-bars text-primary"></i>
-			</button>
-				<div class="dropdown-menu dropdown-menu-end" aria-labelledby="orederStatistics">
-            <?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $registration->registration_id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $registration->registration_id), 'class' => 'dropdown-item', 'escapeTitle' => false]
-            ) ?>
-            <?= $this->Html->link(('List Registrations'), ['action' => 'index'], ['class' => 'dropdown-item', 'escapeTitle' => false]) ?>
-				</div>
-		</div>
+
+<!-- Header Section -->
+<div class="row text-body-secondary mb-4">
+    <div class="col-10">
+	<h1 class="my-0 page_title" style="font-size: 1.8rem; font-weight: bold; color: #0d6efd;"><?php echo $title; ?></h1>
+	<h6 class="sub_title text-body-secondary" style="font-size: 1rem; color: #6c757d;"><?php echo $system_name; ?></h6>
+    </div>
+    <div class="col-2 text-end">
+        <div class="dropdown mx-3 mt-2">
+            <button class="btn p-0 border-0" type="button" id="orderStatistics" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa-solid fa-bars text-primary"></i>
+            </button>
+            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="orderStatistics">
+                <?= $this->Html->link(('List Registrations'), ['action' => 'index'], ['class' => 'dropdown-item', 'escapeTitle' => false]) ?>
+            </div>
+        </div>
     </div>
 </div>
-<div class="line mb-4"></div>
-<!--/Header-->
 
-<div class="card rounded-0 mb-3 bg-body-tertiary border-0 shadow">
+<div class="line mb-4"></div>
+
+<!-- Form Section -->
+<div class="card rounded-3 mb-3 bg-body-tertiary border-0 shadow">
     <div class="card-body text-body-secondary">
-            <?= $this->Form->create($registration) ?>
-            <fieldset>
-                <legend><?= __('Edit Registration') ?></legend>
-                
-                    <?php echo $this->Form->control('student_id', ['options' => $students]); ?>
-                    <?php echo $this->Form->control('subject_id', ['options' => $subjects]); ?>
-                    <?php echo $this->Form->control('registration_date'); ?>
-                    <?php echo $this->Form->control('status'); ?>
-               
-            </fieldset>
-				<div class="text-end">
-				  <?= $this->Form->button('Reset', ['type' => 'reset', 'class' => 'btn btn-outline-warning']); ?>
-				  <?= $this->Form->button(('Submit'),['type' => 'submit', 'class' => 'btn btn-outline-primary']) ?>
+        <?= $this->Form->create($registration, ['class' => 'needs-validation', 'novalidate' => true]) ?>
+        <fieldset>
+           
+            <!-- Form Controls -->
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <?= $this->Form->control('student_id', [
+                        'options' => $students,
+                        'label' => 'Student',
+                        'class' => 'form-select rounded-1',
+                        'required' => true,
+                    ]); ?>
                 </div>
+                <div class="col-md-6">
+                    <?= $this->Form->control('subject_id', [
+                        'options' => $subjects,
+                        'label' => 'Subject',
+                        'class' => 'form-select rounded-1',
+                        'required' => true,
+                    ]); ?>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <?= $this->Form->control('registration_date', [
+                        'label' => 'Registration Date',
+                        'class' => 'form-control rounded-1',
+                        'type' => 'date',
+                    ]); ?>
+                </div>
+                <div class="col-md-6">
+				<?= $this->Form->control('status', [
+                    'type' => 'select',
+                    'options' => [
+                        '1' => 'Active',
+                        '0' => 'Inactive',
+                    ],
+                    'empty' => false,
+                    'class' => 'form-select', // Correct class for smaller size
+                    'label' => 'Status', // Hide the default label from FormHelper
+                    'id' => 'status' // Explicit ID if needed
+                ]); ?>
+                </div>
+            </div>
+        </fieldset>
+        <!-- Action Buttons -->
+        <div class="text-end">
+            <?= $this->Form->button('Reset', ['type' => 'reset', 'class' => 'btn btn-outline-warning me-2']); ?>
+            <?= $this->Form->button(('Submit'), ['type' => 'submit', 'class' => 'btn btn-outline-primary']); ?>
+        </div>
         <?= $this->Form->end() ?>
     </div>
 </div>

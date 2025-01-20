@@ -1,4 +1,3 @@
-registrations view
 
 <?php
 /**

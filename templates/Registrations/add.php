@@ -1,9 +1,10 @@
 
+
 <!-- Header Section -->
 <div class="row text-body-secondary mb-4">
     <div class="col-10">
-        <h1 class="my-0 page_title text-uppercase text-primary"><?= $title; ?></h1>
-        <h6 class="sub_title text-muted"><?= $system_name; ?></h6>
+	<h1 class="my-0 page_title" style="font-size: 1.8rem; font-weight: bold; color: #0d6efd;"><?php echo $title; ?></h1>
+	<h6 class="sub_title text-body-secondary" style="font-size: 1rem; color: #6c757d;"><?php echo $system_name; ?></h6>
     </div>
     <div class="col-2 text-end">
         <div class="dropdown mx-3 mt-2">
@@ -53,10 +54,17 @@
                     ]); ?>
                 </div>
                 <div class="col-md-6">
-                    <?= $this->Form->control('status', [
-                        'label' => 'Status',
-                        'class' => 'form-control rounded-1',
-                    ]); ?>
+				<?= $this->Form->control('status', [
+                    'type' => 'select',
+                    'options' => [
+                        '1' => 'Active',
+                        '0' => 'Inactive',
+                    ],
+                    'empty' => false,
+                    'class' => 'form-select', // Correct class for smaller size
+                    'label' => 'Status', // Hide the default label from FormHelper
+                    'id' => 'status' // Explicit ID if needed
+                ]); ?>
                 </div>
             </div>
         </fieldset>

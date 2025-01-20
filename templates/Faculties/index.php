@@ -37,8 +37,8 @@
 <!--Header-->
 <div class="row text-body-secondary">
 	<div class="col-10">
-		<h1 class="my-0 page_title"><?php echo $title; ?></h1>
-		<h6 class="sub_title text-body-secondary"><?php echo $system_name; ?></h6>
+	<h1 class="my-0 page_title" style="font-size: 1.8rem; font-weight: bold; color: #0d6efd;"><?php echo $title; ?></h1>
+    <h6 class="sub_title text-body-secondary" style="font-size: 1rem; color: #6c757d;"><?php echo $system_name; ?></h6>
 	</div>
 	<div class="col-2 text-end">
 		<div class="dropdown mx-3 mt-2">
@@ -366,7 +366,7 @@ const status = new Chart(ctx_2, {
 					echo ' ';
 					echo $this->Html->link(__('Reset'), ['action' => 'index', '?' => array_intersect_key($this->request->getQuery(), array_flip(['sort', 'direction']))], ['class' => 'btn btn-outline-warning btn-sm']);
 				}
-				echo '&nbsp;&nbsp;';
+				echo '	';
 				echo $this->Form->button(__('Search'), ['class' => 'btn btn-outline-primary btn-sm']);
 			?>
 			<?= $this->Form->end() ?>

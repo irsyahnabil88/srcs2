@@ -16,8 +16,8 @@
 <!--Header-->
 <div class="row text-body-secondary">
 	<div class="col-10">
-		<h1 class="my-0 page_title"><?php echo $title; ?></h1>
-		<h6 class="sub_title text-body-secondary"><?php echo $system_name; ?></h6>
+	<h1 class="my-0 page_title" style="font-size: 1.8rem; font-weight: bold; color: #0d6efd;"><?php echo $title; ?></h1>
+    <h6 class="sub_title text-body-secondary" style="font-size: 1rem; color: #6c757d;"><?php echo $system_name; ?></h6>
 	</div>
 	<div class="col-2 text-end">
 		<div class="dropdown mx-3 mt-2">
@@ -67,9 +67,9 @@
 					<th>#</th>
                     <th><?= $this->Paginator->sort('lecturer_id') ?></th>
                     <th><?= $this->Paginator->sort('lecturer_name') ?></th>
-                    <th><?= $this->Paginator->sort('lecturer_email') ?></th>
+                    
                     <th><?= $this->Paginator->sort('lecturer_department') ?></th>
-                    <th><?= $this->Paginator->sort('faculty_id') ?></th>
+                    <th><?= $this->Paginator->sort('faculty_name') ?></th>
                     <th><?= $this->Paginator->sort('status') ?></th>
                     
                     <th class="actions"><?= __('Actions') ?></th>
@@ -81,9 +81,9 @@
 				<td><?php echo $counter++ ?></td>
                     <td><?= $this->Number->format($lecturer->lecturer_id) ?></td>
                     <td><?= h($lecturer->lecturer_name) ?></td>
-                    <td><?= h($lecturer->lecturer_email) ?></td>
+                    
                     <td><?= h($lecturer->lecturer_department) ?></td>
-                    <td><?= $lecturer->hasValue('faculty') ? $this->Html->link($lecturer->faculty->faculty_department, ['controller' => 'Faculties', 'action' => 'view', $lecturer->faculty->faculty_id]) : '' ?></td>
+                    <td><?=($lecturer->faculty->faculty_department)?></td>
                     <td>
     <?php 
         if ($lecturer->status == 1) {
