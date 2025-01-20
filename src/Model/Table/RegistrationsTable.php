@@ -27,6 +27,8 @@ use Cake\Validation\Validator;
  * @method iterable<\App\Model\Entity\Registration>|\Cake\Datasource\ResultSetInterface<\App\Model\Entity\Registration> saveManyOrFail(iterable $entities, array $options = [])
  * @method iterable<\App\Model\Entity\Registration>|\Cake\Datasource\ResultSetInterface<\App\Model\Entity\Registration>|false deleteMany(iterable $entities, array $options = [])
  * @method iterable<\App\Model\Entity\Registration>|\Cake\Datasource\ResultSetInterface<\App\Model\Entity\Registration> deleteManyOrFail(iterable $entities, array $options = [])
+ *
+ * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class RegistrationsTable extends Table
 {
@@ -43,6 +45,8 @@ class RegistrationsTable extends Table
         $this->setTable('registrations');
         $this->setDisplayField('registration_id');
         $this->setPrimaryKey('registration_id');
+
+        $this->addBehavior('Timestamp');
 
         $this->belongsTo('Students', [
             'foreignKey' => 'student_id',
@@ -66,9 +70,7 @@ class RegistrationsTable extends Table
 					'wildcardAny' => '*',
 					'wildcardOne' => '?',
 					'fields' => ['id'],
-					]);
-					
-		
+				]);
     }
 
     /**
@@ -91,6 +93,10 @@ class RegistrationsTable extends Table
             ->date('registration_date')
             ->requirePresence('registration_date', 'create')
             ->notEmptyDate('registration_date');
+
+        $validator
+            ->integer('status')
+            ->allowEmptyString('status');
 
         return $validator;
     }

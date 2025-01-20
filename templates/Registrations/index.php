@@ -25,7 +25,7 @@
 			<i class="fa-solid fa-bars text-primary"></i>
 			</button>
 				<div class="dropdown-menu dropdown-menu-end" aria-labelledby="orederStatistics">
-							<li><?= $this->Html->link(__('<i class="fa-solid fa-plus"></i> New Registration'), ['action' => 'add'], ['class' => 'dropdown-item', 'escapeTitle' => false]) ?></li>
+							<li><?= $this->Html->link(('<i class="fa-solid fa-plus"></i> New Registration'), ['action' => 'add'], ['class' => 'dropdown-item', 'escapeTitle' => false]) ?></li>
 							</div>
 		</div>
 </div>
@@ -65,10 +65,12 @@
 		?>
                 <tr>
 					<th>#</th>
-                    <th><?= $this->Paginator->sort('registration_id') ?></th>
+                 
                     <th><?= $this->Paginator->sort('student_id') ?></th>
                     <th><?= $this->Paginator->sort('subject_id') ?></th>
                     <th><?= $this->Paginator->sort('registration_date') ?></th>
+                    <th><?= $this->Paginator->sort('status') ?></th>
+                   
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -76,14 +78,23 @@
                 <?php foreach ($registrations as $registration): ?>
                 <tr>
 				<td><?php echo $counter++ ?></td>
-                    <td><?= $this->Number->format($registration->registration_id) ?></td>
-                    <td><?= $registration->hasValue('student') ? $this->Html->link($registration->student->student_name, ['controller' => 'Students', 'action' => 'view', $registration->student->student_id]) : '' ?></td>
-                    <td><?= $registration->hasValue('subject') ? $this->Html->link($registration->subject->subject_name, ['controller' => 'Subjects', 'action' => 'view', $registration->subject->subject_id]) : '' ?></td>
+                    
+                    <td><?= ($registration->student->student_name)  ?></td>
+                    <td><?= ($registration->subject->subject_name) ?></td>
                     <td><?= h($registration->registration_date) ?></td>
-					<td class="actions text-center">
+					<td>
+                                <?php if ($registration->status == 1): ?>
+                                    <span style="background-color: #198754; color: #fff; padding: 0.2rem 0.4rem; border-radius: 12px;">Success</span>
+									<?php elseif ($registration->status == 0): ?>
+                                <span style="background-color: #ffc107;color: #fff; padding: 0.2rem 0.4rem; border-radius: 12px;">Pending</span>
+                            <?php else: ?>
+                                <span style="background-color: #dc3545; color: #212529; padding: 0.2rem 0.4rem; border-radius: 12px;12px;">Error</span>
+                                <?php endif; ?>
+                            </td>
+					<td >
 						<div class="btn-group shadow" role="group" aria-label="Basic example">
-							<?= $this->Html->link(__('<i class="far fa-folder-open"></i>'), ['action' => 'view', $registration->registration_id], ['class' => 'btn btn-outline-primary btn-xs', 'escapeTitle' => false]) ?>
-							<?= $this->Html->link(__('<i class="fa-regular fa-pen-to-square"></i>'), ['action' => 'edit', $registration->registration_id], ['class' => 'btn btn-outline-warning btn-xs', 'escapeTitle' => false]) ?>
+							<?= $this->Html->link(('<i class="far fa-folder-open"></i>'), ['action' => 'view', $registration->registration_id], ['class' => 'btn btn-outline-primary btn-xs', 'escapeTitle' => false]) ?>
+							<?= $this->Html->link(('<i class="fa-regular fa-pen-to-square"></i>'), ['action' => 'edit', $registration->registration_id], ['class' => 'btn btn-outline-warning btn-xs', 'escapeTitle' => false]) ?>
 							<?php $this->Form->setTemplates([
 								'confirmJs' => 'addToModal("{{formName}}"); return false;'
 							]); ?>
@@ -111,10 +122,10 @@
         <?= $this->Paginator->first('<< ' . __('First')) ?>
         <?= $this->Paginator->prev('< ' . __('Previous')) ?>
         <?= $this->Paginator->numbers(['before' => '', 'after' => '']) ?>
-        <?= $this->Paginator->next(__('Next') . ' >') ?>
-        <?= $this->Paginator->last(__('Last') . ' >>') ?>
+        <?= $this->Paginator->next(('Next') . ' >') ?>
+        <?= $this->Paginator->last(('Last') . ' >>') ?>
     </ul>
-    <div class="text-end"><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></div>
+    <div class="text-end"><?= $this->Paginator->counter(('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></div>
 </div>
 	</div>
 </div>
@@ -332,10 +343,10 @@ const status = new Chart(ctx_2, {
 			<?php 
 				if (!empty($_isSearch)) {
 					echo ' ';
-					echo $this->Html->link(__('Reset'), ['action' => 'index', '?' => array_intersect_key($this->request->getQuery(), array_flip(['sort', 'direction']))], ['class' => 'btn btn-outline-warning btn-sm']);
+					echo $this->Html->link(('Reset'), ['action' => 'index', '?' => array_intersect_key($this->request->getQuery(), array_flip(['sort', 'direction']))], ['class' => 'btn btn-outline-warning btn-sm']);
 				}
 				echo '&nbsp;&nbsp;';
-				echo $this->Form->button(__('Search'), ['class' => 'btn btn-outline-primary btn-sm']);
+				echo $this->Form->button(('Search'), ['class' => 'btn btn-outline-primary btn-sm']);
 			?>
 			<?= $this->Form->end() ?>
 		</div>

@@ -1,3 +1,5 @@
+registrations/edit.php
+
 <?php
 /**
  * @var \App\View\AppView $this
@@ -23,7 +25,7 @@
                 ['action' => 'delete', $registration->registration_id],
                 ['confirm' => __('Are you sure you want to delete # {0}?', $registration->registration_id), 'class' => 'dropdown-item', 'escapeTitle' => false]
             ) ?>
-            <?= $this->Html->link(__('List Registrations'), ['action' => 'index'], ['class' => 'dropdown-item', 'escapeTitle' => false]) ?>
+            <?= $this->Html->link(('List Registrations'), ['action' => 'index'], ['class' => 'dropdown-item', 'escapeTitle' => false]) ?>
 				</div>
 		</div>
     </div>
@@ -40,11 +42,12 @@
                     <?php echo $this->Form->control('student_id', ['options' => $students]); ?>
                     <?php echo $this->Form->control('subject_id', ['options' => $subjects]); ?>
                     <?php echo $this->Form->control('registration_date'); ?>
+                    <?php echo $this->Form->control('status'); ?>
                
             </fieldset>
 				<div class="text-end">
 				  <?= $this->Form->button('Reset', ['type' => 'reset', 'class' => 'btn btn-outline-warning']); ?>
-				  <?= $this->Form->button(__('Submit'),['type' => 'submit', 'class' => 'btn btn-outline-primary']) ?>
+				  <?= $this->Form->button(('Submit'),['type' => 'submit', 'class' => 'btn btn-outline-primary']) ?>
                 </div>
         <?= $this->Form->end() ?>
     </div>

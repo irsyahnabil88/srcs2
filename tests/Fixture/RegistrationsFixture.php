@@ -22,7 +22,10 @@ class RegistrationsFixture extends TestFixture
                 'registration_id' => 1,
                 'student_id' => 1,
                 'subject_id' => 1,
-                'registration_date' => '2025-01-18 19:30:41',
+                'registration_date' => '2025-01-20',
+                'status' => 1,
+                'created' => '2025-01-20 12:43:25',
+                'modified' => '2025-01-20 12:43:25',
             ],
         ];
         parent::init();

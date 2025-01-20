@@ -11,7 +11,10 @@ use Cake\ORM\Entity;
  * @property int $registration_id
  * @property int $student_id
  * @property int $subject_id
- * @property \Cake\I18n\DateTime $registration_date
+ * @property \Cake\I18n\Date $registration_date
+ * @property int|null $status
+ * @property \Cake\I18n\DateTime $created
+ * @property \Cake\I18n\DateTime $modified
  *
  * @property \App\Model\Entity\Student $student
  * @property \App\Model\Entity\Subject $subject
@@ -31,6 +34,9 @@ class Registration extends Entity
         'student_id' => true,
         'subject_id' => true,
         'registration_date' => true,
+        'status' => true,
+        'created' => true,
+        'modified' => true,
         'student' => true,
         'subject' => true,
     ];

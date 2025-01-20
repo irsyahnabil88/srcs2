@@ -178,8 +178,25 @@ class RegistrationsController extends AppController
         $registration = $this->Registrations->get($id, contain: ['Students', 'Subjects']);
         $this->set(compact('registration'));
 
-        $this->set(compact('registration'));
     }
+
+    public function pdf($id = null)
+{
+    $this->viewBuilder()
+        ->setClassName('CakePdf.Pdf')
+        ->setOption('pdfConfig', [
+            'orientation' => 'portrait',
+            'download' => true,
+            'filename' => 'Registration_' . $id . '.pdf'
+        ]);
+
+    $registration = $this->Registrations->get($id, [
+        'contain' => ['Students', 'Subjects'],
+    ]);
+    
+    $title = 'Registration Details';
+    $this->set(compact('registration', 'title'));
+}
 
     /**
      * Add method
@@ -202,11 +219,11 @@ class RegistrationsController extends AppController
         if ($this->request->is('post')) {
             $registration = $this->Registrations->patchEntity($registration, $this->request->getData());
             if ($this->Registrations->save($registration)) {
-                $this->Flash->success(__('The registration has been saved.'));
+                $this->Flash->success(('The registration has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The registration could not be saved. Please, try again.'));
+            $this->Flash->error(('The registration could not be saved. Please, try again.'));
         }
         $students = $this->Registrations->Students->find('list', ['limit' => 200])->all();
         $subjects = $this->Registrations->Subjects->find('list', ['limit' => 200])->all();
@@ -238,11 +255,11 @@ class RegistrationsController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $registration = $this->Registrations->patchEntity($registration, $this->request->getData());
             if ($this->Registrations->save($registration)) {
-                $this->Flash->success(__('The registration has been saved.'));
+                $this->Flash->success(('The registration has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The registration could not be saved. Please, try again.'));
+            $this->Flash->error(('The registration could not be saved. Please, try again.'));
         }
 		$students = $this->Registrations->Students->find('list', limit: 200)->all();
 		$subjects = $this->Registrations->Subjects->find('list', limit: 200)->all();
@@ -270,9 +287,9 @@ class RegistrationsController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $registration = $this->Registrations->get($id);
         if ($this->Registrations->delete($registration)) {
-            $this->Flash->success(__('The registration has been deleted.'));
+            $this->Flash->success(('The registration has been deleted.'));
         } else {
-            $this->Flash->error(__('The registration could not be deleted. Please, try again.'));
+            $this->Flash->error(('The registration could not be deleted. Please, try again.'));
         }
 
         return $this->redirect(['action' => 'index']);
@@ -297,11 +314,11 @@ class RegistrationsController extends AppController
             $registration = $this->Registrations->patchEntity($registration, $this->request->getData());
 			$registration->status = 2; //archived
             if ($this->Registrations->save($registration)) {
-                $this->Flash->success(__('The registration has been archived.'));
+                $this->Flash->success(('The registration has been archived.'));
 
 				return $this->redirect($this->referer());
             }
-            $this->Flash->error(__('The registration could not be archived. Please, try again.'));
+            $this->Flash->error(('The registration could not be archived. Please, try again.'));
         }
         $this->set(compact('registration'));
     }
