@@ -58,7 +58,13 @@ $a_name = $this->request->getParam('action');
                     <?= $this->Html->link(__('<i class="menu-icon fa-solid fa-user-tie"></i> Profile'), ['controller' => 'Users', 'action' => 'profile', 'prefix' => false, $this->Identity->get('slug')], ['class' => 'menu-link', 'escape' => false]) ?>
                 </li>
                 <?php if ($this->Identity->isLoggedIn() && $this->Identity->get('user_group_id') == '1') { ?>
+                    
+                    
+                    
+                    
                     <!-- Administrator -->
+
+                    
                     <li class="menu-header fw-bold text-uppercase mt-4 mb-3">
                         <span class="menu-header-text ps-4">Administrator</span>
                         <div class="tricolor_line mb-3"></div>
