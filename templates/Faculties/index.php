@@ -358,7 +358,9 @@ const status = new Chart(ctx_2, {
 			<div class="tricolor_line mb-3"></div>
 			<?php echo $this->Form->create(null, ['valueSources' => 'query', 'url' => ['controller' => 'Faculties','action' => 'index']]); ?>
 				<fieldset>
-					<div class="mb-1"><?php echo $this->Form->control('id',['required' => false]); ?></div>
+					<div class="mb-1"><?php echo $this->Form->control('Faculty id',['required' => false]); ?></div>
+					<div class="mb-1">
+				
 				</fieldset>
 		<div class="text-end">
 			<?php 

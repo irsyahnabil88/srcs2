@@ -50,7 +50,8 @@ class FacultiesTable extends Table
 		$this->addBehavior('AuditStash.AuditLog');
 		$this->addBehavior('Search.Search');
 		$this->searchManager()
-			->value('faculty_name')
+			->value('faculty_id')
+            
 				->add('search', 'Search.Like', [
 					//'before' => true,
 					//'after' => true,
@@ -60,7 +61,7 @@ class FacultiesTable extends Table
 					'comparison' => 'LIKE',
 					'wildcardAny' => '*',
 					'wildcardOne' => '?',
-					'fields' => ['faculty_name'],
+					'fields' => ['faculty_id'],
 				]);
     }
 

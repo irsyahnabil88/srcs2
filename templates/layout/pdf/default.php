@@ -3,133 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Course Registration Success</title>
+    <title>Course Registration Certificate</title>
     <style>
-        /* General Styling */
         body {
-            font-family: 'Times New Roman', Times, serif;
-            background-color: #f4f4f9;
+            font-family: Arial, sans-serif;
             margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            padding: 20px;
+            background: white;
         }
 
-        .certificate-container {
-            width: 80%;
-            max-width: 900px;
-            margin: 2rem auto;
-            padding: 3rem;
-            background-color: #ffffff;
-            border: 2px solid #ddd;
-            border-radius: 15px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        .certificate {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+            border: 2px solid #1a5f7a;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .header {
             text-align: center;
+            margin-bottom: 30px;
         }
 
-        /* Title and Sub-Title Styling */
-        h2 {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: #0d6efd;
+        .title {
+            color: #1a5f7a;
+            font-size: 28px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 16px;
             margin-bottom: 20px;
         }
 
-        h4 {
-            font-size: 1.3rem;
-            color: #6c757d;
-            margin-top: 0;
-        }
-
-        /* Success Banner */
         .success-banner {
-            background-color: #198754;
+            background: #1a5f7a;
             color: white;
-            padding: 10px 20px;
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-top: 20px;
-            border-radius: 12px;
-            display: inline-block;
+            padding: 10px;
+            text-align: center;
+            border-radius: 5px;
+            margin-bottom: 30px;
         }
 
-        /* Table Styling for Registration Details */
-        .table {
+        table {
             width: 100%;
-            margin-top: 40px;
             border-collapse: collapse;
+            margin: 20px 0;
         }
 
-        .table th, .table td {
+        th, td {
             padding: 12px;
             text-align: left;
-            font-size: 1.1rem;
-            border-bottom: 1px solid #ddd;
+            border-bottom: 1px solid #eee;
         }
 
-        .table th {
-            font-weight: normal;
-            color: #555;
+        th {
+            color: #1a5f7a;
+            width: 40%;
         }
 
-        .table td {
-            font-weight: bold;
-            color: #333;
-        }
-
-        /* Footer */
         .footer {
             text-align: center;
-            font-size: 0.9rem;
-            color: #777;
             margin-top: 30px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            font-size: 80px;
+            color: rgba(26, 95, 122, 0.03);
+            z-index: -1;
+            pointer-events: none;
         }
     </style>
 </head>
 <body>
-    <div class="certificate-container">
-        <!-- Certificate Title and Subtitle -->
-        <h2>Course Registration Successful</h2>
-        <h4>Your registration has been successfully processed!</h4>
-
-        <!-- Success Banner -->
-        <div class="success-banner">Registration Success</div>
-
-        <!-- Registration Details Table -->
-        <div class="table-responsive">
-            <table class="table">
-                <tr>
-                    <th>Student Name</th>
-                    <td><?= ($registration->student->student_name) ?></td>
-                </tr>
-                <tr>
-                    <th>Course Name</th>
-                    <td><?= ($registration->subject->subject_name) ?></td>
-                </tr>
-                <tr>
-                    <th>Registration ID</th>
-                    <td><?= $this->Number->format($registration->registration_id) ?></td>
-                </tr>
-                <tr>
-                    <th>Registration Date</th>
-                    <td><?= h($registration->registration_date) ?></td>
-                </tr>
-                <tr>
-                    <th>Created On</th>
-                    <td><?= h($registration->created) ?></td>
-                </tr>
-                <tr>
-                    <th>Modified On</th>
-                    <td><?= h($registration->modified) ?></td>
-                </tr>
-            </table>
+    <div class="certificate">
+        <div class="watermark">VERIFIED</div>
+        
+        <div class="header">
+            <h1 class="title">Course Registration Certificate</h1>
+            <p class="subtitle">Official Registration Confirmation</p>
         </div>
 
-        <!-- Footer -->
+        <div class="success-banner">
+            Registration Successfully Completed
+        </div>
+
+        <table>
+            <tr>
+                <th>Student Name</th>
+                <td><?= h($registration->student->student_name) ?></td>
+            </tr>
+            <tr>
+                <th>Course Name</th>
+                <td><?= h($registration->subject->subject_name) ?></td>
+            </tr>
+            <tr>
+                <th>Registration ID</th>
+                <td><?= $this->Number->format($registration->registration_id) ?></td>
+            </tr>
+            <tr>
+                <th>Registration Date</th>
+                <td><?= h($registration->registration_date) ?></td>
+            </tr>
+
+        </table>
+
         <div class="footer">
-        <b>Registration ID: </b> <?= $this->Number->format($registration->registration_id) ?>
+            <p>This is an official registration certificate issued by the system.</p>
+            <p><strong>Registration ID: <?= $this->Number->format($registration->registration_id) ?></strong></p>
+            <p>Please retain this document for your records.</p>
         </div>
     </div>
 </body>
