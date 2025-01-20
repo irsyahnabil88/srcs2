@@ -38,9 +38,19 @@
                 
                     <?php echo $this->Form->control('lecturer_name'); ?>
                     <?php echo $this->Form->control('lecturer_email'); ?>
-                    <?php echo $this->Form->control('lecturer_department'); ?>
-                    <?php echo $this->Form->control('faculty_id', ['options' => $faculties]); ?>
-                    <?php echo $this->Form->control('status'); ?>
+                    <?php echo $this->Form->control('lecturer_Faculty'); ?>
+                    <?php echo $this->Form->control('faculty_Department', ['options' => $faculties]); ?>
+                    <?= $this->Form->control('status', [
+                    'type' => 'select',
+                    'options' => [
+                        '1' => 'Active',
+                        '0' => 'Inactive',
+                    ],
+                    'empty' => false,
+                    'class' => 'form-select form-select-sm', // Correct class for smaller size
+                    'label' => false, // Hide the default label from FormHelper
+                    'id' => 'status' // Explicit ID if needed
+                ]); ?>
                
             </fieldset>
 				<div class="text-end">

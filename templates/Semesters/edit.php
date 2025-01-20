@@ -38,8 +38,17 @@
                     <?php echo $this->Form->control('semester_name'); ?>
                     <?php echo $this->Form->control('semester_startdate'); ?>
                     <?php echo $this->Form->control('semester_enddate'); ?>
-                    
-                    <?php echo $this->Form->control('status'); ?>
+                    <?= $this->Form->control('status', [
+                    'type' => 'select',
+                    'options' => [
+                        '1' => 'Active',
+                        '0' => 'Inactive',
+                    ],
+                    'empty' => false,
+                    'class' => 'form-select form-select-sm', // Correct class for smaller size
+                    'label' => false, // Hide the default label from FormHelper
+                    'id' => 'status' // Explicit ID if needed
+                ]); ?>
                
             </fieldset>
 				<div class="text-end">
